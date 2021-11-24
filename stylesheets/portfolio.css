@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap');
+
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    line-height: 1.6;
+    background: #f3b3ff;
+    font-family: 'VT323', monospace;
+}
+
+.card {
+    max-width: 40ch;
+    padding: clamp(1.5rem, 20vh, 10rem) 0 0;
+    background-image: url("IMG_0157.jpeg");
+    background-size: cover;
+    color: white;
+    box-shadow: 0 1em 2em rgb(0 0 0 / 0.2);
+    transition: transform ease 250ms;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 1.5rem;
+    background: linear-gradient(
+            rgb(0 0 0 / 0),
+            rgb(0 0 0 / 0.25) 15%,
+            rgb(0 0 0 / 1)
+    );
+}
+
+.card-body p {
+    color: hsl(0deg 50% 100% / 0.8);
+    margin-bottom: 1.25em;
+}
+
+@media (hover: hover), (prefers-reduced-motion: no-preference) {
+    .card-body {
+        transform: translateY(60%);
+        transition: transform 500ms ease;
+    }
+
+    .card:hover .card-body {
+        transform: translateY(0);
+        transition-delay: 500ms;
+    }
+
+    .card-body > *:not(.card-title) {
+        opacity: 0;
+        transition: opacity 1200ms linear 400ms;
+    }
+
+    .card:hover .card-body > *:not(.card-title) {
+        opacity: 1;
+    }
+
+    .card-title::after {
+        content: "";
+        position: absolute;
+        left: -1.5rem;
+        top: 100%;
+        height: 3px;
+        width: calc(100% + 1.5rem);
+        background: hsl(272, 65%, 49%);
+        transform: scaleX(0);
+        transition: transform 200ms ease;
+        transform-origin: left;
+    }
+
+    .card:hover .card-title::after {
+        transition: transform 500ms ease;
+        transform: scaleX(1);
+    }
+}
+
+.button {
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    background: hsl(272, 65%, 49%);
+    padding: 0.5em 1.25em;
+    border-radius: 0.25rem;
+}
+
+.button:hover {
+    background: white;
+}
+.card-title {
+    position: relative;
+    width: max-content;
+}
+
+nav {
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    padding: 5px 0;
+    /*-webkit-transform: translate(-50%, -50%);*/
+    /*transform: translate(-50%, -50%);*/
+}
+
+nav ul{
+    flex: 1;
+    text-align: right;
+    padding-right: 30px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 30px;
+}
+
+nav a {
+    color: #f6f4e6;
+    text-decoration: none;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    position: relative;
+    /*-webkit-transition: all 0.2s ease-in-out;*/
+    /*transition: all 0.2s ease-in-out;*/
+}
+
+nav a::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background:#de11ff ;
+    transition: width 0.3s;
+}
+
+nav a:hover::after {
+    color: #de11ff;
+    width: 50%;
+
+}
+
+h1{
+    font-family: 'Shippori Antique B1', sans-serif;
+    font-size: 30px;
+    color: transparent;
+    -webkit-text-stroke: 1px #ffff;
+    background-image: linear-gradient(to right, #c9ff9b, #f3b3ff);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation: back 20s linear infinite;
+    padding-left: 10px;
+}
+
+@keyframes back {
+    100%{
+    background-position: 2000px 0;
+}
+}
+
+
+
