@@ -20,7 +20,7 @@ body {
 }
 
 .card {
-    max-width: 40ch;
+    max-width: 60ch;
     padding: clamp(1.5rem, 20vh, 10rem) 0 0;
     background-image: url("IMG_0157.jpeg");
     background-size: cover;
@@ -135,7 +135,7 @@ nav ul li{
 }
 
 nav a {
-    color: #f6f4e6;
+    color: #000000;
     text-decoration: none;
     font-size: 1.2em;
     text-transform: uppercase;
@@ -159,13 +159,13 @@ nav a::after {
 
 nav a:hover::after {
     color: #de11ff;
-    width: 50%;
+    width: 100%;
 
 }
 
 h1{
     font-family: 'Shippori Antique B1', sans-serif;
-    font-size: 30px;
+    font-size: 36px;
     color: transparent;
     -webkit-text-stroke: 1px #ffff;
     background-image: linear-gradient(to right, #c9ff9b, #f3b3ff);
@@ -176,10 +176,14 @@ h1{
 }
 
 @keyframes back {
+    0%{
+        background-position: 0px 0;
+    }
+    50%{
+        background-position: 2000px 0;
+    }
     100%{
-    background-position: 2000px 0;
+    background-position: 0px 0;
 }
 }
-
-
 
