@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     $rate = $_POST['quantity'];
     $shift = $_POST['shift'];
     $details = $_POST['details'];
+    $datum = $_POST['date'];
 
     $errors = [];
     if ($name == "") {
@@ -31,8 +32,8 @@ if (isset($_POST['submit'])) {
 
     if (empty($errors)) {
         //INSERT in DB
-        $query = "INSERT INTO reserveringen (name , rate, shift, details)
-                    VALUES('$name', '$rate','$shift','$details')";
+        $query = "INSERT INTO reserveringen (name , rate, shift, details,datum)
+                    VALUES('$name', '$rate','$shift','$details','$datum')";
         $result = mysqli_query($db, $query)
             or die('Error: '.mysqli_error($db).' with query: '.$query);
 
@@ -105,9 +106,18 @@ if (isset($errors['db'])) {
             echo $errors['details'];
         }
         ?>
-            <div class="data-field space">
-                <input type="submit" name="submit" placeholder="submit" value="submit"/>
-            </div>
+        <div class="data-field">
+            <label for="date">Datum</label>
+            <input type="date" name="date">
+        </div>
+
+        <div class="data-field space">
+            <input type="submit" name="submit" placeholder="submit" value="submit"/>
+        </div>
+
+
+
+
     </form>
 
 

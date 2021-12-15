@@ -13,7 +13,7 @@
 body {
     display: grid;
     min-height: 100vh;
-    place-items: center;
+    /*place-items: center;*/
     line-height: 1.6;
     background: #f3b3ff;
     font-family: 'VT323', monospace;
@@ -47,6 +47,11 @@ body {
 .card-body p {
     color: hsl(0deg 50% 100% / 0.8);
     margin-bottom: 1.25em;
+}
+
+section{
+    display: flex;
+    justify-content: center;
 }
 
 @media (hover: hover), (prefers-reduced-motion: no-preference) {
@@ -174,6 +179,60 @@ h1{
     animation: back 20s linear infinite;
     padding-left: 10px;
 }
+
+
+.effect span{
+    display: inline-flex;
+    color: #0000;
+
+}
+
+.effect span:nth-child(even){
+    overflow: hidden;
+    transition: ease-in-out 0.5s;
+    color: #fff;
+    border-bottom: 8px solid #de11ff;
+    letter-spacing: -1em;
+}
+
+.effect:hover span:nth-child(even){
+    letter-spacing: 0;
+    cursor: pointer;
+}
+
+.effect:hover span:nth-child(2){
+    transition-delay: 0s;
+
+}
+
+.effect:hover span:nth-child(4){
+    transition-delay: 0.5s;
+
+}
+
+.effect:hover span:nth-child(6){
+    transition-delay: 1.0s;
+}
+.effect:hover span:nth-child(8){
+    transition-delay: 1.5s;
+}
+
+.effect:hover span:nth-child(10){
+    transition-delay: 2.0s;
+}
+
+aside {
+    width: 40%;
+    padding-left: 15px;
+    margin-left: 15px;
+    float: left;
+    background-color:#ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 @keyframes back {
     0%{

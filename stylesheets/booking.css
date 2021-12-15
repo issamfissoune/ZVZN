@@ -32,12 +32,13 @@ form p{
 .data-field{
     display: flex;
     justify-content: space-between;
-
 }
 
-input,select{
+input{
     padding:8px 13px;
-
+}
+select {
+    margin-right: 22%;
 }
 
 .container {
@@ -45,5 +46,10 @@ input,select{
     margin: 210px;
     box-shadow:10px 15px 20px rgba(0, 0, 0, .1);
     display: flex;
+    justify-content: left;
     grid-template-columns: 45% 65%;
+}
+
+span{
+    color: red;
 }

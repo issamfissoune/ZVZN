@@ -40,13 +40,25 @@ mysqli_close($db);
 <body>
 
 <nav>
-    <h1>Zorg Voor De Zorg Noura</h1>
+
+    <h1 class="effect">
+        <span>Z</span><span>org</span>
+        <span>V</span><span>oor</span>
+        <span>D</span><span>e</span>
+        <span>Z</span><span>org</span>
+        <span>N</span><span>oura</span>
+
+    </h1>
+<!--    <h1>Zorg Voor De Zorg Noura</h1>-->
     <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="login.php">Login</a></li>
-        <li><a href="#">Sign Up</a></li>
+        <li><a href="signup.php">Sign Up</a></li>
     </ul>
 </nav>
+
+
+
 <section>
 <div class="Scroll-container">
 <div class="card">
@@ -59,8 +71,8 @@ mysqli_close($db);
 </div>
 </div>
 
-</section>
 
+<aside>
 <table>
     <thead>
     <tr>
@@ -90,5 +102,8 @@ mysqli_close($db);
     <?php } ?>
     </tbody>
 </table>
+    </aside>
+
+</section>
 </body>
 </html>
