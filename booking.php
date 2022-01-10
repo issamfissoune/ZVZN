@@ -14,7 +14,8 @@ if (isset($_POST['submit'])) {
     $rate = $_POST['quantity'];
     $shift = $_POST['shift'];
     $details = $_POST['details'];
-    $datum = $_POST['date'];
+    $date = $_POST['date'];
+
 
     $errors = [];
     if ($name == "") {
@@ -30,10 +31,11 @@ if (isset($_POST['submit'])) {
         $errors['details'] = "Vul aub de details in";
     }
 
+//
     if (empty($errors)) {
         //INSERT in DB
-        $query = "INSERT INTO reserveringen (name , rate, shift, details,datum)
-                    VALUES('$name', '$rate','$shift','$details','$datum')";
+        $query = "INSERT INTO reserveringen (name , rate, shift, details, date)
+                    VALUES('$name', '$rate','$shift','$details','$date')";
         $result = mysqli_query($db, $query)
             or die('Error: '.mysqli_error($db).' with query: '.$query);
 
@@ -42,6 +44,20 @@ if (isset($_POST['submit'])) {
         } else {
             $errors['db'] = mysqli_error($db);
         }
+    }  elseif (isset($_GET['id']) || $_GET['id'] != ''){
+        $beschikbaarheid = $_GET['id'];
+
+        $query = "SELECT * FROM availability WHERE id =  '$beschikbaarheid'";
+        $result = mysqli_query($db, $query) or die ('Error: ' . $query);
+
+        if (mysqli_num_rows($result) == 1) {
+            $beschikbaarheid = mysqli_fetch_assoc($result);
+        } else {
+            // redirect when db returns no result
+            header('Location: index.php');
+            exit;
+        }
+
     }
 }
 ?>
@@ -106,9 +122,10 @@ if (isset($errors['db'])) {
             echo $errors['details'];
         }
         ?>
-        <div class="data-field">
+        <div class="data-field ">
             <label for="date">Datum</label>
-            <input type="date" name="date">
+            <input type="date" name="date" value="<?= $beschikbaarheid['date'] ?>"/>
+
         </div>
 
         <div class="data-field space">

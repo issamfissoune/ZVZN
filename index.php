@@ -12,6 +12,8 @@ require_once "includes/db.php";
 
 $query = "SELECT * FROM reserveringen";
 
+/** @var $db */
+
 $result = mysqli_query($db, $query)
 or die('Error '.mysqli_error($db).' with query '.$query);
 
@@ -87,6 +89,7 @@ mysqli_close($db);
     <tfoot>
     <tr>
         <td colspan="6">&copy; Reserveringen</td>
+        <td><a href="beschikbaarheid.php">Nieuwe datums toevoegen</a></td>
     </tr>
     </tfoot>
     <tbody>
@@ -105,5 +108,9 @@ mysqli_close($db);
     </aside>
 
 </section>
+
+<footer>
+    Contacts:
+</footer>
 </body>
 </html>

@@ -15,13 +15,23 @@
 </head>
 <body>
 <nav>
-<h1>Zorg Voor De Zorg Noura</h1>
-<ul>
-    <li><a href="index.php">Home</a></li>
-    <li><a href="login.php">Login</a></li>
-    <li><a href="signup.php">Sign Up</a></li>
-</ul>
+
+    <h1 class="effect">
+        <span>Z</span><span>org</span>
+        <span>V</span><span>oor</span>
+        <span>D</span><span>e</span>
+        <span>Z</span><span>org</span>
+        <span>N</span><span>oura</span>
+
+    </h1>
+    <!--    <h1>Zorg Voor De Zorg Noura</h1>-->
+    <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="login.php">Login</a></li>
+        <li><a href="signup.php">Sign Up</a></li>
+    </ul>
 </nav>
+
 
 
 <div class="form">

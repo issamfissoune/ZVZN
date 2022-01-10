@@ -8,6 +8,13 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap');
+:root {
+    --main-color:#f3b3ff ;
+    --secondary-color:#822CCEFF ;
+    --sub-color: #cff0a8;
+    --neutral: #ffff;
+}
+
 
 body {
     display: grid;
@@ -202,6 +209,47 @@ h1{
     animation: back 20s linear infinite;
     padding-left: 10px;
 }
+
+.effect span{
+    display: inline-flex;
+    color: #0000;
+
+}
+
+.effect span:nth-child(even){
+    overflow: hidden;
+    transition: ease-in-out 0.5s;
+    color: #fff;
+    border-bottom: 8px solid var(--secondary-color);
+    letter-spacing: -1em;
+}
+
+.effect:hover span:nth-child(even){
+    letter-spacing: 0;
+    cursor: pointer;
+}
+
+.effect:hover span:nth-child(2){
+    transition-delay: 0s;
+
+}
+
+.effect:hover span:nth-child(4){
+    transition-delay: 0.5s;
+
+}
+
+.effect:hover span:nth-child(6){
+    transition-delay: 1.0s;
+}
+.effect:hover span:nth-child(8){
+    transition-delay: 1.5s;
+}
+
+.effect:hover span:nth-child(10){
+    transition-delay: 2.0s;
+}
+
 
 @keyframes back {
     0%{
