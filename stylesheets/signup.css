@@ -80,11 +80,11 @@ body {
     top: -20px;
     transform: translateY(0);
     transition: transform 200ms;
-    width: 55px;
+    width: 100px;
 }
 
 .cut-short {
-    width: 75px;
+    width: 85px;
 }
 
 .input:focus ~ .cut,
@@ -265,4 +265,8 @@ h1{
 
 .link:hover{
     color: #ffffff;
+}
+
+.errors {
+    color: red;
 }

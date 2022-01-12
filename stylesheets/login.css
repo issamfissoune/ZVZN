@@ -78,7 +78,7 @@ body {
 }
 
 .cut {
-    background-color: #de11ff;
+    background-color: var(--highlights);
     border-radius: 10px;
     height: 20px;
     left: 20px;
@@ -86,11 +86,11 @@ body {
     top: -20px;
     transform: translateY(0);
     transition: transform 200ms;
-    width: 76px;
+    width: 100px;
 }
 
 .cut-short {
-    width: 50px;
+    width: 85px;
 }
 
 .input:focus ~ .cut,
@@ -99,7 +99,8 @@ body {
 }
 
 .placeholder {
-    color: #65657b;
+    /*color: #65657b;*/
+    color: white;
     font-family: sans-serif;
     left: 20px;
     line-height: 14px;
@@ -273,4 +274,8 @@ h1{
 
 .link:hover{
    color: #ffffff;
+}
+
+.errors {
+    color: red;
 }

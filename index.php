@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //$host = "localhost";
 //$user = "root";
 //$password = "";
@@ -56,6 +56,13 @@ mysqli_close($db);
         <li><a href="index.php">Home</a></li>
         <li><a href="login.php">Login</a></li>
         <li><a href="signup.php">Sign Up</a></li>
+        <?php    if (isset($_SESSION['loggedInUser']) && $_SESSION['loggedInUser']['type'] == 'admin' ): ?>
+            <li><a href="beschikbaarheid.php">Beschikbaarheid</a></li>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['loggedInUser'])) : ?>
+            <li><a href="logout.php">Logout</a></li>
+        <?php endif; ?>
+
     </ul>
 </nav>
 
@@ -72,45 +79,10 @@ mysqli_close($db);
     </div>
 </div>
 </div>
-
-
-<aside>
-<table>
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>name</th>
-        <th>rate</th>
-        <th>shift</th>
-        <th>details</th>
-        <th>Wijgeren</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-        <td colspan="6">&copy; Reserveringen</td>
-        <td><a href="beschikbaarheid.php">Nieuwe datums toevoegen</a></td>
-    </tr>
-    </tfoot>
-    <tbody>
-    <?php foreach ($reserveringen as  $reservering) {?>
-        <tr>
-            <td><?= $reservering['id'] ?></td>
-            <td><?= $reservering['name'] ?></td>
-            <td><?= $reservering['rate'] ?></td>
-            <td><?= $reservering['shift'] ?></td>
-            <td><?= $reservering['details'] ?></td>
-            <td><a href="reject.php?id=<?= $reservering['id'] ?>">Weigeren</a></td>
-        </tr>
-    <?php } ?>
-    </tbody>
-</table>
-    </aside>
-
 </section>
-
 <footer>
     Contacts:
 </footer>
+
 </body>
 </html>

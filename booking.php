@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 //$host = "localhost";
 //$user = "root";
 //$password = "";
@@ -8,7 +10,7 @@
 //or die("Error:" . mysqli_connect_error());
 
 require_once 'includes/db.php';
-
+/** @var mysqli $db */
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $rate = $_POST['quantity'];
@@ -19,7 +21,7 @@ if (isset($_POST['submit'])) {
 
     $errors = [];
     if ($name == "") {
-        $errors['name'] = "Vul aub uw voornaam in";
+        $errors['name'] = "Vul aub de naam van de instelling in";
     }
     if ($rate == "") {
         $errors['quantity'] = "Vul aub het tarief in";
@@ -29,6 +31,9 @@ if (isset($_POST['submit'])) {
     }
     if ($details == "") {
         $errors['details'] = "Vul aub de details in";
+    }
+    if ($date == "") {
+        $errors['date'] = "Kies aub een datum";
     }
 
 //
@@ -44,22 +49,30 @@ if (isset($_POST['submit'])) {
         } else {
             $errors['db'] = mysqli_error($db);
         }
-    }  elseif (isset($_GET['id']) || $_GET['id'] != ''){
-        $beschikbaarheid = $_GET['id'];
-
-        $query = "SELECT * FROM availability WHERE id =  '$beschikbaarheid'";
-        $result = mysqli_query($db, $query) or die ('Error: ' . $query);
-
-        if (mysqli_num_rows($result) == 1) {
-            $beschikbaarheid = mysqli_fetch_assoc($result);
-        } else {
-            // redirect when db returns no result
-            header('Location: index.php');
-            exit;
-        }
-
     }
+
+
+    $query = "DELETE FROM availability WHERE datum = '$date'";
+
+    mysqli_query($db, $query);
+
+
 }
+
+$query = "SELECT * FROM availability" ;
+$result = mysqli_query($db, $query) or die ('Error: ' . $query);
+
+$dates = [];
+
+while($row = mysqli_fetch_assoc($result))
+{
+
+    $dates[] = $row;
+}
+mysqli_close($db);
+
+
+
 ?>
 
 
@@ -75,31 +88,45 @@ if (isset($_POST['submit'])) {
 
 </head>
 <body>
+<nav>
 
-<?php
-if (isset($errors['db'])) {
-    echo $errors['db'];
-} elseif (isset($success)) {
-    echo $success;
-}
-?>
-<div class="container">
+    <h1 class="effect">
+        <span>Z</span><span>org</span>
+        <span>V</span><span>oor</span>
+        <span>D</span><span>e</span>
+        <span>Z</span><span>org</span>
+        <span>N</span><span>oura</span>
+
+    </h1>
+    <!--    <h1>Zorg Voor De Zorg Noura</h1>-->
+    <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="login.php">Login</a></li>
+        <li><a href="signup.php">Sign Up</a></li>
+        <?php    if (isset($_SESSION['loggedInUser']) && $_SESSION['loggedInUser']['type'] == 'admin' ): ?>
+            <li><a href="beschikbaarheid.php">Beschikbaarheid</a></li>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['loggedInUser'])) : ?>
+            <li><a href="logout.php">Logout</a></li>
+        <?php endif; ?>
+
+    </ul>
+</nav>
+
+    <div class="container-input">
     <form action="" method="post">
             <div class="data-field">
                 <label for="username">Naam instelling</label>
                 <input id="username" type="text" name="name" placeholder="Naam" />
             </div>
-        <?php
-        if (isset($errors['name'])) {
-            echo $errors['name'];
-        }
-        ?>
+        <span><?= $errors['name'] ?? ''  ?></span>
 
             <div class="data-field ">
                 <label for="quantity">Uur tarief €</label>
                 <input type="number" id="quantity" name="quantity" min="15" >
             </div>
             <span><?= $errors['quantity'] ?? ''  ?></span>
+
             <div class="data-field ">
                 <label for="shift">Dienst</label>
                 <select name="shift" id="shift">
@@ -108,37 +135,36 @@ if (isset($errors['db'])) {
                     <option value="ochtend">Ochtend</option>
                 </select>
             </div>
-        <?php
-        if (isset($errors['shift'])) {
-            echo $errors['shift'];
-        }
-        ?>
+        <span><?= $errors['shift'] ?? ''  ?></span>
+
+
         <div class="data-field ">
             <label for="details">Details</label>
             <textarea name="details" id="details" placeholder="Details van de shift"></textarea>
         </div>
-        <?php
-        if (isset($errors['details'])) {
-            echo $errors['details'];
-        }
-        ?>
+        <span><?= $errors['details'] ?? ''  ?></span>
+
         <div class="data-field ">
             <label for="date">Datum</label>
-            <input type="date" name="date" value="<?= $beschikbaarheid['date'] ?>"/>
-
+            <select name="date" id="date">
+                <option value="">Kies een datum</option>
+                <?php foreach ($dates as  $date) {?>
+                <option value="<?= $date['datum']?>"><?= $date['datum'] ?></option>
+                <?php } ?>
+            </select>
         </div>
+        <span><?= $errors['date'] ?? ''  ?></span>
 
-        <div class="data-field space">
-            <input type="submit" name="submit" placeholder="submit" value="submit"/>
-        </div>
+        <button type="submit" name="submit" class="submit">Maak afspraak</button>
 
 
 
 
     </form>
+        <a href="index.php" class="button">Back to the home screen</a>
+    </div>
 
 
-</div>
-<a href="index.php">Back to the home screen</a>
+
 </body>
 </html>

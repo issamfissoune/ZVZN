@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
     <div class="input-container ic1">
         <input id="name" class="input" type="text" name="name" placeholder=" " value="<?= htmlentities($name); ?>"/>
         <div class="cut"></div>
-        <label for="name" class="placeholder">Naam</label>
+        <label for="name" class="placeholder">Naam Instelling</label>
         <span class="errors"><?= $errors['name'] ?? ''; ?></span>
     </div>
         <div class="input-container ic2">
