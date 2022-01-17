@@ -8,6 +8,11 @@ session_start();
 //
 //$db = mysqli_connect($host, $user, $password, $database)
 //or die("Error:" . mysqli_connect_error());
+if (!isset($_SESSION['loggedInUser'])) {
+    header('Location: login.php');
+    exit;
+}
+
 
 require_once 'includes/db.php';
 /** @var mysqli $db */

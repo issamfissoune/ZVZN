@@ -24,6 +24,8 @@ if (isset($_POST['submit'])) {
 
     //Check if email exists in database
     $errors = [];
+
+
     if ($user) {
         //Validate password
         if (password_verify($password, $user['password'])) {

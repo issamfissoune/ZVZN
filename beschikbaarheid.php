@@ -165,7 +165,9 @@ mysqli_close($db);
                 <th>rate</th>
                 <th>shift</th>
                 <th>details</th>
-                <th>Weigeren</th>
+                <th>Datum</th>
+                <th>Wijeren</th>
+                <th>Edit</th>
             </tr>
             </thead>
             <tfoot>
@@ -182,10 +184,9 @@ mysqli_close($db);
                     <td><?= $reservering['rate'] ?></td>
                     <td><?= $reservering['shift'] ?></td>
                     <td><?= $reservering['details'] ?></td>
-
-
-                    <td><a href="reject.php?id=<?= $reservering['id'] ?>">Weigeren</a></td>
-
+                    <td><?= $reservering['date'] ?></td>
+                    <td><a href="reject.php?id=<?= $reservering['id'] ?>">Wijgeren</a></td>
+                    <td><a href="edit.php?id=<?= $reservering['id']?>">Edit</a></td>
                 </tr>
             <?php } ?>
             </tbody>
