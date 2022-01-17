@@ -176,15 +176,15 @@ nav a:hover::after {
 }
 
 h1{
-    font-family: 'Shippori Antique B1', sans-serif;
-    font-size: 36px;
-    color: transparent;
-    -webkit-text-stroke: 1px #ffff;
-    background-image: linear-gradient(to right, var(--sub-color), var(--main-color));
-    -webkit-background-clip: text;
-    background-position: 0 0;
-    animation: back 20s linear infinite;
-    padding-left: 10px;
+    /*font-family: 'Shippori Antique B1', sans-serif;*/
+    /*font-size: 36px;*/
+    /*color: transparent;*/
+    /*-webkit-text-stroke: 1px #ffff;*/
+    /*background-image: linear-gradient(to right, var(--sub-color), var(--main-color));*/
+    /*-webkit-background-clip: text;*/
+    /*background-position: 0 0;*/
+    /*animation: back 20s linear infinite;*/
+    /*padding-left: 10px;*/
 }
 
 
