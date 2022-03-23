@@ -1,7 +1,12 @@
 <?php
 require_once 'includes/db.php';
 //require_once 'index.php';
+session_start();
 
+if (!isset($_SESSION['loggedInUser'])) {
+    header('Location: login.php');
+    exit;
+}
 
 $index = $_GET['id'];
 

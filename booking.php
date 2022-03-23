@@ -17,11 +17,11 @@ if (!isset($_SESSION['loggedInUser'])) {
 require_once 'includes/db.php';
 /** @var mysqli $db */
 if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $rate = $_POST['quantity'];
-    $shift = $_POST['shift'];
-    $details = $_POST['details'];
-    $date = $_POST['date'];
+    $name =mysqli_escape_string($db, $_POST['name']);
+    $rate = mysqli_escape_string($db, $_POST['quantity']);
+    $shift = mysqli_escape_string($db, $_POST['shift']);
+    $details = mysqli_escape_string($db, $_POST['details']);
+    $date = mysqli_escape_string($db, $_POST['date']);
 
 
     $errors = [];
@@ -122,13 +122,14 @@ mysqli_close($db);
     <form action="" method="post">
             <div class="data-field">
                 <label for="username">Naam instelling</label>
-                <input id="username" type="text" name="name" placeholder="Naam" />
+                <input id="username" type="text" name="name" placeholder="Naam"
+                       value="<?=  isset($name) ? htmlentities($name): ''  ?>"/>
             </div>
         <span><?= $errors['name'] ?? ''  ?></span>
 
             <div class="data-field ">
                 <label for="quantity">Uur tarief €</label>
-                <input type="number" id="quantity" name="quantity" min="15" >
+                <input type="number" id="quantity" name="quantity" min="30" >
             </div>
             <span><?= $errors['quantity'] ?? ''  ?></span>
 
@@ -145,7 +146,8 @@ mysqli_close($db);
 
         <div class="data-field ">
             <label for="details">Details</label>
-            <textarea name="details" id="details" placeholder="Details van de shift"></textarea>
+            <input name="details" id="details" placeholder="Details van de shift"
+                      value="<?=  isset($details) ? htmlentities($details): ''  ?>">
         </div>
         <span><?= $errors['details'] ?? ''  ?></span>
 

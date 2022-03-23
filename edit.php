@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['loggedInUser'])) {
+    header('Location: login.php');
+    exit;
+}
+
 require_once 'includes/db.php';
 
 //Grabbing the ID of the chosen reservation with GET
@@ -71,9 +78,10 @@ if (isset($_POST['submit'])){
                   WHERE id = $index;";
         $resultaat = mysqli_query($db, $query)
         or die('Error: '.mysqli_error($db).' with query: '.$query);
-
+    //if de query is succesful go to next page
         if ($resultaat) {
            header("location: beschikbaarheid.php");
+       // if not show error message
         } else {
             $errors['db'] = mysqli_error($db);
         }
@@ -109,27 +117,27 @@ mysqli_close($db);
     <form action="" method="post">
 
             <label for="username">Naam instelling</label>
-            <input id="username" type="text" name="name" placeholder="Naam" />
+            <input id="username" type="text" name="name" placeholder="Naam" value="<?= $selectedReservation['name'] ?>" />
             <span><?= $errors['name'] ?? ''  ?></span>
 
 
             <label for="quantity">Uur tarief €</label>
-            <input type="number" id="quantity" name="quantity" min="15" >
+            <input type="number" id="quantity" name="quantity" min="15" value="<?= $selectedReservation['rate'] ?>">
             <span><?= $errors['quantity'] ?? ''  ?></span>
 
 
             <label for="shift">Dienst</label>
             <select name="shift" id="shift">
                 <option value="">Selecteer shift</option>
-                <option value="avond">Avond</option>
-                <option value="ochtend">Ochtend</option>
+                <option value="avond" <?= $selectedReservation['shift'] === 'avond' ? 'selected' : '' ?>>Avond</option>
+                <option value="ochtend" <?= $selectedReservation['shift'] === 'ochtend' ? 'selected' : '' ?>>Ochtend</option>
             </select>
             <span><?= $errors['shift'] ?? ''  ?></span>
 
 
 
             <label for="details">Details</label>
-            <textarea name="details" id="details" placeholder="Details van de shift"></textarea>
+            <textarea name="details" id="details" placeholder="Details van de shift"><?= $selectedReservation['details'] ?></textarea>
             <span><?= $errors['details'] ?? ''  ?></span>
 
 
@@ -137,7 +145,7 @@ mysqli_close($db);
             <select name="date" id="date">
                 <option value="">Kies een datum</option>
                 <?php foreach ($dates as  $date) {?>
-                    <option value="<?= $date['datum']?>"><?= $date['datum'] ?></option>
+                    <option value="<?= $date['datum']?>" <?= $selectedReservation['date'] === $date['datum'] ? 'selected' : '' ?>><?= $date['datum'] ?></option>
                 <?php } ?>
             </select>
             <span><?= $errors['date'] ?? ''  ?></span>
